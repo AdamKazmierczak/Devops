@@ -4,7 +4,7 @@ Troubleshoot and fix the issue, and make sure haproxy service is running on Naut
 
 
 #check the systemctl service 
-#ssl to haprxy loadbalancer
+#ssl to haproxy loadbalancer
 
 systemctl status haproxy 
 
