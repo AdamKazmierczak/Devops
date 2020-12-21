@@ -1,7 +1,9 @@
-i would go with the yum -y install mlocate
+#There are 2 methods do this task
+#i would go with the yum -y install mlocate
 
-then find files with extension js via 
+#then find files with extension js via 
 mlocate /var/www/html/ecommerce/*.js
 
+
 after that use command 
-` find /home/ubuntu/rook/design -type f -name '*.md' -exec cp --parents {} /home/ubuntu \;
+` find /var/www/html/official -type f -name '*.css' -exec cp --parents {} /official \;
