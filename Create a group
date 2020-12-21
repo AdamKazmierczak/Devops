@@ -6,5 +6,5 @@ b. Add the user kano to nautilus_developers in all App servers. (create the user
 ssh tony@stapp01
 ssh steve@stapp02
 ssh banner@stapp03
-#then run as sudo command to add user to nautilis_developers group where kano means user name. This command will add and create user.
+#then run as sudo command to add user to nautilis_developers group where kano means user name. This command will add  user.
 sudo usermod –aG nautilus_developers kano
