@@ -4,13 +4,19 @@
 #-y is for automatic confirmation
 
 yum install cronie -y  
+sudo systemctl start crond.service
+sudo systemctl status crond.servic
 
 # to change cron run job  for root 
 
 sudo crontab -e
 
-# input here as requested  */5 * * * * echo hello > /tmp/cron_text  where 
+# input here as requested  */5 * * * * echo hello > /tmp/cron_text 
+#save file :w and quit :q
 
+#list jobs per user in your case root
+ crontab -u <username> -l
+  crontab -u root -l
 #
 #Field	Allowed Values
 #minute	0-59
