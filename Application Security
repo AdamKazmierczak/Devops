@@ -3,18 +3,26 @@ server itself, and Nginx is running as a reverse proxy on the same server. Apach
 We have iptables firewall installed on this server. Make the appropriate changes to fulfill the requirements mentioned below:
 We want to open all incoming connections to Nginx's port and block all incoming connections to Apache's port. Also make sure rules are permanent.
 
-sudo iptables -A INPUT -p tcp -m  tcp --dport 6440 -j ACCEPT
-sudo iptables -L
-sudo iptables -A INPUT -p tcp -m  tcp --dport 8094 -j DROP
+#to open all incoming connections to Nginx's port / accept any new and established connections
+sudo iptables -A INPUT -p tcp --dport 8096 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT 
 
+#to block all incoming connections to Apache's port /reject any new connections
+sudo iptables -A INPUT -p tcp --dport 6100 -m conntrack --ctstate NEW -j REJECT 
 
-iptables -A INPUT -p tcp --dport 8092 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-iptables -A INPUT -p tcp --dport 3000 -m conntrack --ctstate NEW -j REJECT
-
-
-sudo iptables-save > /etc/sysconfig/iptables
-service iptables restart
+#check out rules
 sudo iptables -L
 
-iptables-save | sudo tee /etc/sysconfig/iptables
-service iptables restart
+#iptables-save  ##to save it permanently. 
+#you will be able to see the rules in the files /etc/sysconfig/iptables
+sudo service iptables save
+
+#if you do check out via cat
+
+cat /etc/sysconfig/iptables
+
+#you should see something like this 
+-A INPUT -p tcp -m tcp --dport 8096 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 6100 -m conntrack --ctstate NEW -j REJECT --reject-with icmp-port-unreachable
+
+
+
