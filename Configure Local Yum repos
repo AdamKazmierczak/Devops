@@ -3,14 +3,19 @@ a. We have some packages already present at location /packages/downloaded_rpms/ 
 b. Create a yum repo named local_yum and make sure to set Repository ID to local_yum. Configure it to use package's location /packages/downloaded_rpms/.
 c. Install package vim-enhanced from this newly created repo.
 
-vi /etc/yum.repos.d/localrepo.repo
+sudo vi /etc/yum.repos.d/localrepo.repo
 
-[localrepo]
-name=yum_local
-baseurl=file:///packages/downloaded_rpms/
-gpgcheck=0
+#[yum_local] is important as it states for yum repo name /ID
+[yum_local]                                                                                                           
+name=yum_local                                                                                     
+baseurl=file:///packages/downloaded_rpms/                                                      
+gpgcheck=0                                                                                                         
 enabled=1
 
-createrepo -v /var/ftp/pub/localrepo/
+#finnaly run
+
+yum repolist
+
+#yum install samba samba-client samba-common
 
 yum install samba -y
