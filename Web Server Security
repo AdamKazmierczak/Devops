@@ -1,3 +1,4 @@
+curl -I http://172.16.238.12:8080
 
 sudo systemctl status httpd
 
@@ -19,3 +20,6 @@ Require all granted
 sudo systemctl restart httpd
 
 Its worked for me
+
+Validate the apache version not exposed
+curl -I http://IP_address:8080
