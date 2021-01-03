@@ -3,7 +3,7 @@ Therefore, we have a requirement to limit its maximum processes.
 Please set its maximum process limits as below:
 
 
-
+Click on ✔ and Do Task Again
 
 vi /etc/security/limits.conf
 
