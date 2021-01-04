@@ -1,0 +1,22 @@
+The system admins team of xFusionCorp Industries needs to deploy a new application on App Server 1 in Stratos Datacenter. 
+They have some pre-requites to get ready that server for application deployment. Prepare the server as per requirements shared below:
+Install and configure nginx on App Server 1.
+On App Server 1 there is a self signed SSL certificate and key present at location /tmp/nautilus.crt and /tmp/nautilus.key. Move them to some appropriate location and deploy the same in Nginx.
+Create an index.html file with content Welcome! under Nginx document root.
+For final testing try to access the App Server 1 link (either hostname or IP) from jump host using curl command. For example curl -Ik https://<app-server-ip>/.
+
+
+add nginx reposity
+
+sudo yum install epel-release -y
+
+sudo yum install nginx -y
+
+install nginx
+create home/banner/data/index.html [light text welcome!]
+set permissions for banner at home level and modify ownership
+move certificate and key to /etc/nginx/ssl
+install firewalld . open ports 80 and 443 . enable https service.restart firewalld
+Edit server section of nginx.conf server - put IP add line listen 443 ssl …comment out the line root . under location add line -> root /home/banner/data;
+7.restart nginx
+Everything should be ok. else based on response from curl -Ik https://IP 3 …check and fix for relevant messages on /var/log/nginx/error.log
