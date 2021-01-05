@@ -2,6 +2,7 @@ There are specific access levels for users defined by the xFusionCorp Industries
 a. Create a group named nautilus_developers in all App servers in Stratos Datacenter.
 b. Add the user kano to nautilus_developers in all App servers. (create the user if not present already)
 
+Click on ✔ and Do Task Again
 #all is needed here is to ssh to all app servers 
 ssh tony@stapp01
 ssh steve@stapp02
