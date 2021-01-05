@@ -3,6 +3,7 @@ On our Storage server in Stratos Datacenter we are having some issues where nfsu
 a. soft limit = 72
 b. hard_limit = 98
 
+Click on ✔ and Do Task Again
 1>Update the file /etc/security/limits.conf with the below lines nfsuser soft nproc 72 nfsuser hard nproc 98 2>After saving the file run command as nfsuser so first run
 su - nfsuser
 3>Then check with below commands
