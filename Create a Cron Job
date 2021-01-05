@@ -3,6 +3,7 @@
 #cronie stand for cron package 
 #-y is for automatic confirmation
 
+Click on ✔ and Do Task Again
 yum install cronie -y  
 sudo systemctl start crond.service
 sudo systemctl status crond.servic
