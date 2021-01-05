@@ -3,6 +3,7 @@ Install iptables and all its dependencies on each app host.
 Block incoming port 6400 on all apps for everyone except for LBR host.
 Make sure the rules remain, even after system reboot.
 
+Click on ✔ and Do Task Again
 sudo yum install iptables-services -y
 BigGr33n
 
