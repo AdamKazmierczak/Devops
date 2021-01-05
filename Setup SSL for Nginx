@@ -8,15 +8,55 @@ For final testing try to access the App Server 1 link (either hostname or IP) fr
 
 add nginx reposity
 
+#install ngingx repository
 sudo yum install epel-release -y
 
+#install nginx
 sudo yum install nginx -y
 
-install nginx
-create home/banner/data/index.html [light text welcome!]
-set permissions for banner at home level and modify ownership
-move certificate and key to /etc/nginx/ssl
-install firewalld . open ports 80 and 443 . enable https service.restart firewalld
-Edit server section of nginx.conf server - put IP add line listen 443 ssl …comment out the line root . under location add line -> root /home/banner/data;
-7.restart nginx
-Everything should be ok. else based on response from curl -Ik https://IP 3 …check and fix for relevant messages on /var/log/nginx/error.log
+sudo su
+
+--copy cert files to folders from tmp to /etc/pki/CA/certs and /etc/pki/CA/certs/private
+cp tmp/nautilus.crt /etc/pki/CA/certs/nautilus.crt
+cp tmp/nautilus.key /etc/pki/CA/private/nautilusk.key 
+
+--check if keys have been copied
+
+--go to the folder /etc/nginx/
+cd /etc/nginx
+
+--edit nginx.conf file 
+sudo vi nginx.conf
+
+--search for and change server name to stapp01 ip. Uncoment section regarding Server { listen 443 ...}. Add ip to server name in section 443
+
+server {
+     listen 80
+     ....
+}
+
+server {
+   listen 443 ssl 
+   ....
+}
+
+
+--restart nginx service
+
+sudo systemctl restart nginx
+--if nginx do not start up you have error in config file nginx.conf
+
+--change schell to tony / normal user
+
+go to folder /usr/share/nginx/html and create file index.html with Welcome! text
+sudo vi /usr/share/nginx/html/index.html
+
+--check if there are proper rights on file 
+ls /usr/share/nginx/html/index.html -all
+
+if not then add those via 
+sudo chmod +x index.html
+
+go to jump server and check if everything works as should
+curl -Ik https://ip_adress_of_app_sever
+
