@@ -1,3 +1,5 @@
+Click on ✔ and Do Task Again
+
 curl -I http://172.16.238.12:8080
 
 sudo systemctl status httpd
