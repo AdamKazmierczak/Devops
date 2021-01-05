@@ -3,6 +3,7 @@ Identify the faulty Nautilus Application Servers and fix the issue. Also, make s
 Apache is running on 8084 port on all Nautilus Application Servers and its document root must be /var/www/html on all app servers.
 Finally you can test from jump host using curl command to access Apache on all app servers and it should work fine. E.g. curl http://172.16.238.10:8084/
 
+Click on ✔ and Do Task Again
 Ssh to all app servers 
 
 #ssh to stapp01
