@@ -4,6 +4,7 @@ The system admins team of xFusionCorp Industries has set up a new tool on all ap
 
 Create a user named rose in App Server 1 without a home directory.
 
+Click on ✔ and Do Task Again
 #try this 
 
 sudo adduser --no-create-home -rose
