@@ -6,12 +6,13 @@ Create an index.html file with content Welcome! under Nginx document root.
 For final testing try to access the App Server 1 link (either hostname or IP) from jump host using curl command. For example curl -Ik https://<app-server-ip>/.
 
 
-add nginx reposity
+Click on ✔ and Do Task Again
+--add nginx reposity
 
-#install ngingx repository
+install ngingx repository
 sudo yum install epel-release -y
 
-#install nginx
+install nginx
 sudo yum install nginx -y
 
 sudo su
