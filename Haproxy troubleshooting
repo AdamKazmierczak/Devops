@@ -2,7 +2,7 @@ xFusionCorp Industries has an application running on Nautlitus infrastructure in
 
 Troubleshoot and fix the issue, and make sure haproxy service is running on Nautilus LBR server.
 
-
+Click on ✔ and Do Task Again
 #check the systemctl service 
 #ssl to haproxy loadbalancer
 
