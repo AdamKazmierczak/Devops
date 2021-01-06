@@ -1,0 +1,21 @@
+
+
+
+Creating directory is simple
+Adding user:
+htpasswd -c /etc/httpd/.htpasswd
+Create basic .htaccess file
+cat /var/www/html/itadmin/.htaccess <----------- itadmin is the new directory created
+AuthType Basic
+AuthName “Restricted Content”
+AuthUserFile /etc/httpd/.htpasswd
+Require valid-user
+Update the httpd configuration file with this entry
+cat /etc/httpd/conf/httpd.conf
+<Directory “/var/www/html/itadmin”> <--------- itadmin is the new directory name
+AllowOverride AuthConfig
+Scp /tmp/index.html file from jumpbox to app server (/var/www/html/itadmin/index.html).
+Restart httpd service
+Test connectivity
+curl -u yousuf:GyQkFRVNr3 http://stapp01:8080/itadmin/
+where yousuf is the new user created followed by password
