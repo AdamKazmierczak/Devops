@@ -39,3 +39,12 @@ systemctl status httpd
 systemctl restart firewalld
 #check rules
 firewall-cmd --zone=public --list-all
+
+#as a checkup do from any stapp and LB
+#on stapp001-003
+curl localhost:numberofapacheport
+curl localhost:numberofnonaddedport
+curl localhost:nginxport
+
+#on LB
+curl stapp001:apacheport
