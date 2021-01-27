@@ -21,8 +21,8 @@ Listen 6000
 
 vi /etc/nginx/nginx.conf
 
-and input where 8095 is nginx port being used for redirection to apache. And proxy pass is for apache port in this example 6000
-to the 
+#and input where 8095 is nginx port being used for redirection to apache. And proxy pass is for apache port in this example 6000
+#to the 
 server {
  listen       8095 default_server;
  listen       [::}:8095 default_server;
