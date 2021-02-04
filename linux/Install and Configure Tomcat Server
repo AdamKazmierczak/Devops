@@ -23,7 +23,7 @@ find text with text such as port 8080 and change port number like on example bel
 # check port changes on tomcat server
 cat /usr/share/tomcat/conf/server.xml |grep port
 
-you shoul see something like this 
+#  you shoul see something like this 
 
 <Server port="8005" shutdown="SHUTDOWN">
          Define a non-SSL HTTP/1.1 Connector on port 8080
