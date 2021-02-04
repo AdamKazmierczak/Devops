@@ -18,7 +18,7 @@ Listen 172.16.238.10:8084
 sudo systemctl start httpd
 sudo systemctl status httpd
 
-#curl for check up stapp01
+# curl for check up stapp01
 curl http://172.16.238.10:8084
 
 # then ssh to stapp02
@@ -39,9 +39,9 @@ sudo systemctl status httpd.service
 curl 172.16.238.11:8084
 
 # ssh to stapp03
-#check configuration of httpd.conf
+# check configuration of httpd.conf
 sudo vi /etc/httpd/conf/httpd.conf
-#change configuration of Listen value to proper 8084
+# change configuration of Listen value to proper 8084
 Listen 172.16.238.10:8084
 
 # start httpd /apache service
