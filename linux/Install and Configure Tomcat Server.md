@@ -35,11 +35,11 @@ cat /usr/share/tomcat/conf/server.xml |grep port
     <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
     
-#start tomcat server / it is not running by default
+# start tomcat server / it is not running by default
 systemctl start tomcat
 
-#check if it is running 
+# check if it is running 
 systemctl status tomcat
     
-#check if file is visible via curl and proper port / bear in mind that ip might change due to app server from your task
+# check if file is visible via curl and proper port / bear in mind that ip might change due to app server from your task
 curl -i 172.16.238.12:8083
