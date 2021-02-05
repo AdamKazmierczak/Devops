@@ -26,6 +26,7 @@ cat /etc/ssh/sshd_config |grep sftp -A 10
 Subsystem       sftp    /usr/libexec/openssh/sftp-server
 
 # Example of overriding settings on a per-user basis
+
 -#Match User anoncvs
 -#       X11Forwarding no
 -#       AllowTcpForwarding no
@@ -35,7 +36,6 @@ Subsystem       sftp    /usr/libexec/openssh/sftp-server
 
 # to have fully it configured you need to edit file and add configuration as bellow.
 
-#Subsystem      sftp    /usr/libexec/openssh/sftp-server
 subsystem sftp internal-sftp 
 Match User javed
 ForceCommand internal-sftp
@@ -46,7 +46,8 @@ AllowAgentForwarding no
 AllowTcpForwarding no
 X11Forwarding no
 
--# Example of overriding settings on a per-user basis
+# Example of overriding settings on a per-user basis
+
 #Match User anoncvs
 -#       X11Forwarding no
 -#       AllowTcpForwarding no
@@ -57,10 +58,15 @@ X11Forwarding no
 #  add proper permission to folder created
 
 chown root:root /var/www     # add ownership to folder
+
 chmod -R 755 /var/www        # add permissions
+
 chmod -R 755 /var/www/code   # add permissions
+
 chown -R javed /var/www/code # add ownership to folder
+
 chown -R root /var/www/code  # add ownership
+
 chown -R root /var/www/      # add ownership to folder
 
 # restart systemctl deamon to adjust changes
