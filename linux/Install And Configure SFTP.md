@@ -37,21 +37,32 @@ Subsystem       sftp    /usr/libexec/openssh/sftp-server
 # to have fully it configured you need to edit file and add configuration as bellow.
 
 subsystem sftp internal-sftp 
+
 Match User javed
+
 ForceCommand internal-sftp
+
 PasswordAuthentication yes
+
 ChrootDirectory  /var/www/code  # this is just an example /check your task folder
+
 PermitTunnel no
+
 AllowAgentForwarding no
+
 AllowTcpForwarding no
+
 X11Forwarding no
 
 # Example of overriding settings on a per-user basis
 
 #Match User anoncvs
 -#       X11Forwarding no
+
 -#       AllowTcpForwarding no
+
 -#       PermitTTY no
+
 -#       ForceCommand cvs server
 
 
