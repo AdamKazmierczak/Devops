@@ -26,11 +26,11 @@ cat /etc/ssh/sshd_config |grep sftp -A 10
 Subsystem       sftp    /usr/libexec/openssh/sftp-server
 
 # Example of overriding settings on a per-user basis
-#Match User anoncvs
-#       X11Forwarding no
-#       AllowTcpForwarding no
-#       PermitTTY no
-#       ForceCommand cvs server
+-#Match User anoncvs
+-#       X11Forwarding no
+-#       AllowTcpForwarding no
+-#       PermitTTY no
+-#       ForceCommand cvs server
 
 
 # to have fully it configured you need to edit file and add configuration as bellow.
@@ -46,12 +46,12 @@ AllowAgentForwarding no
 AllowTcpForwarding no
 X11Forwarding no
 
-# Example of overriding settings on a per-user basis
+-# Example of overriding settings on a per-user basis
 #Match User anoncvs
-#       X11Forwarding no
-#       AllowTcpForwarding no
-#       PermitTTY no
-#       ForceCommand cvs server
+-#       X11Forwarding no
+-#       AllowTcpForwarding no
+-#       PermitTTY no
+-#       ForceCommand cvs server
 
 
 #  add proper permission to folder created
@@ -63,11 +63,11 @@ chown -R javed /var/www/code # add ownership to folder
 chown -R root /var/www/code  # add ownership
 chown -R root /var/www/      # add ownership to folder
 
-#restart systemctl deamon to adjust changes
+# restart systemctl deamon to adjust changes
 
 systemctl restart sshd
 
-#check user acces and input password
+# check user acces and input password
 
 sftp javer@localhost # should be granted
 
