@@ -14,7 +14,7 @@ systemctl restart iptables
 ```
 
 # in some cases you would need to reset iptables and redo adding rules 
-#to do so 
+# to do so 
 ```
 iptables -F
 ```
