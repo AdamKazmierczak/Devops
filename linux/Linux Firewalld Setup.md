@@ -11,7 +11,7 @@ e. If Apache or Nginx services aren't running already, please make sure to start
 
 
 # do this on all app servers
-#check your ports via grep command / nginx and apache
+# check your ports via grep command / nginx and apache
 grep -i Listen /etc/httpd/conf/ht* /etc/nginx/nginx.conf
 
 # install firewall
