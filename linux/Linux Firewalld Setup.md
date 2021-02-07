@@ -14,20 +14,20 @@ e. If Apache or Nginx services aren't running already, please make sure to start
 #check your ports via grep command / nginx and apache
 grep -i Listen /etc/httpd/conf/ht* /etc/nginx/nginx.conf
 
-#install firewall
+# install firewall
 yum install firewalld -y
 
 systemctl start firewalld && systemctl enable firewalld && systemctl status firewalld
 
-#nginx add port 
+# nginx add port 
 firewall-cmd --zone=public --add-port=8093/tcp --permanent
 
 firewall-cmd  --permanent --zone=public --add-service={http,https}
 
-#add rules apachec + LB
+# add rules apachec + LB
 firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="172.16.238.14" port protocol=tcp port=5002 accept'
 
-#enable autostart of nginx 
+# enable autostart of nginx 
 systemctl enable nginx && systemctl status nginx 
 #enable httpd autostart 
 systemctl enable httpd && systemctl status httpd
@@ -35,16 +35,16 @@ systemctl enable httpd && systemctl status httpd
 systemctl restart nginx
 systemctl status httpd
 
-#important reload firewall settings after applying.be aware that this might stop your ssh conection and you might need to reconect again to stapp001--03
+# important reload firewall settings after applying.be aware that this might stop your ssh conection and you might need to reconect again to stapp001--03
 systemctl restart firewalld
 #check rules
 firewall-cmd --zone=public --list-all
 
-#as a checkup do from any stapp and LB
-#on stapp001-003
+# as a checkup do from any stapp and LB
+# on stapp001-003
 curl localhost:numberofapacheport
 curl localhost:numberofnonaddedport
 curl localhost:nginxport
 
-#on LB
+# on LB
 curl stapp001:apacheport
