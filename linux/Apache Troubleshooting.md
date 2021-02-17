@@ -12,38 +12,48 @@ sudo vi /etc/httpd/conf/httpd.conf
 
 # edit to proper value
 ServerRoot "etc/httpd"
+```
 Listen 172.16.238.10:8084
-
+```
 # then restart httpd service
+```
 sudo systemctl start httpd
 sudo systemctl status httpd
-
+```
 # curl for check up stapp01
+```
 curl http://172.16.238.10:8084
-
+```
 # then ssh to stapp02
-
+```
 sudo systemctl start httpd
 sudo systemctl status httpd.service
-
+```
+```
 sudo vi /etc/httpd/conf/httpd.conf
-
+```
 # edit to proper value
+```
 ServerRoot "etc/httpd"
-
+```
 # start httpd /apache service
+```
 sudo systemctl start httpd
 sudo systemctl status httpd.service
-
+```
 # check to reasure
+```
 curl 172.16.238.11:8084
-
+```
 # ssh to stapp03
 # check configuration of httpd.conf
+```
 sudo vi /etc/httpd/conf/httpd.conf
+```
 # change configuration of Listen value to proper 8084
+```
 Listen 172.16.238.10:8084
-
+```
 # start httpd /apache service
 sudo systemctl start httpd
 sudo systemctl status httpd.service
