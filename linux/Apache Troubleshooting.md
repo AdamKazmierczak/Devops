@@ -47,13 +47,22 @@ curl 172.16.238.11:8084
 ```
 # ssh to stapp03
 # check configuration of httpd.conf
+# check status of service
+sudo systemctl start httpd
+sudo systemctl status httpd.service
+# you will find that at line 119 (or any othere is configuration error, this might indicate that at for examve /var/html is addtional letter such as ; 
+# example 
+
+```
+etc/httpd;
+```
+
+# remove addtional letter ; and save
+
 ```
 sudo vi /etc/httpd/conf/httpd.conf
 ```
-# change configuration of Listen value to proper 8084
-```
-Listen 172.16.238.10:8084
-```
+
 # start httpd /apache service
 sudo systemctl start httpd
 sudo systemctl status httpd.service
