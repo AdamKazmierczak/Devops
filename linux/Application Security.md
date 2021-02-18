@@ -17,7 +17,7 @@ sudo iptables -A INPUT -p tcp --dport 6100 -m conntrack --ctstate NEW -j REJECT
 ```
 sudo iptables -L
 ```
-# iptables-save  ##to save it permanently. 
+# iptables-save  - to save it permanently. 
 # you will be able to see the rules in the files /etc/sysconfig/iptables
 
 ```
