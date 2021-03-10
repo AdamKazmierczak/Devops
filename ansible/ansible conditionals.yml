@@ -26,3 +26,7 @@
           group: banner
           mode: "0777"
         when: inventory_hostname == "stapp03"
+        
+        # bear in mind to check out results via ansible command on all hosts / application servers from inventory file
+        # this commands list directory for files and make output of permissions + owners
+       # ansible all -a "ls -ltr /opt/data/" -i inventory
