@@ -1,0 +1,41 @@
+#
+# Step 1: kubectl create -f <this file> in folder tmp to avoid sudo ;)
+# Step 2: Wait for the pod to be in running state // kubectl get pods -all
+# Step 3: Get a shell to the first container in the pod:
+#         kubectl exec volume-share-devops --container volume-container-devops-1 -- /bin/bash
+# you should see in output something like this 
+# [root@volume-share-devops]
+# Step 4: create file via command as bellow
+#         echo "Welcome to xFusionCorp Industries!" > /tmp/ecommerce/ecommerce.txt
+# exit from cointainer and check if the file is at the second containter mount. 
+# Step 5: Verify: Check that you are able to see this file in the second container
+#         to do so                              
+#  kubectl exec volume-share-devops --container volume-container-devops-2 -- /bin/bash
+#         under corresponding volume mount path as they use shared volumes:
+#         cat /tmp/apps/ecommerce.txt
+#
+# yaml file which needs to be created.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume-share-devops
+  labels:
+    name: myapp
+spec:
+  volumes:
+    - name: volume-share
+      emptyDir: {}
+  containers:
+    - name: volume-container-devops-1
+      image: centos:latest
+      command: ["/bin/bash", "-c", "sleep 10000"]
+      volumeMounts:
+        - name: volume-share
+          mountPath: /tmp/ecommerce
+    - name: volume-container-devops-2
+      image: centos:latest
+      command: ["/bin/bash", "-c", "sleep 10000"]
+      volumeMounts:
+        - name: volume-share
+          mountPath: /tmp/apps
