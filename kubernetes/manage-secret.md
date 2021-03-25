@@ -1,0 +1,42 @@
+#
+## Create a generic secret with the name and file given as per question:
+``
+kubectl create secret generic news --from-file=/opt/news.txt
+``
+## create pod.yml as an example down bellow. Bear in mind to change specific variables such as   name: secret-devops ,  name: secret-volume-devops , secretName: ecommerce and ,mountPath: /opt/apps
+## then deploy it 
+``
+kubectl create -f <this file>
+``
+## if you would deploy it incorectly pod is not in running state check it via command 
+``
+kubectl describe pod secret-nameofpod
+``
+## Verify: Open a shell to the Pod: 
+``
+kubectl exec -it secret-datacenter -- /bin/bash
+``
+## In the resulting prompt, check if the secret file, news.txt, is present
+## under the mount path (i.e. /opt/apps): cat /opt/apps/news.txt
+
+## example yml file for pod deployment 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-devops
+  labels:
+    name: myapp
+spec:
+  volumes:
+    - name: secret-volume-devops
+      secret:
+        secretName: ecommerce
+  containers:
+    - name: secret-container-devops
+      image: debian:latest
+      command: ["/bin/bash", "-c", "sleep 10000"]
+      volumeMounts:
+        - name: secret-volume-devops
+          mountPath: /opt/apps
+          readOnly: true
