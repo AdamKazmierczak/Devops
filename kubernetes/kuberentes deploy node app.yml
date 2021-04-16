@@ -5,6 +5,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: node-deployment-nautilus
+  namespace: node-namespace-nautilus
   labels:
     app: node-container-nautilus
 spec:
