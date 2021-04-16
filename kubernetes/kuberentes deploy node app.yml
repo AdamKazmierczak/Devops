@@ -1,0 +1,42 @@
+## node js application 
+## deploy as yml file kubectl create -f nameoffile.yml -n node-namespace-nautilus
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-deployment-nautilus
+  labels:
+    app: node-container-nautilus
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-container-nautilus
+  template:
+    metadata:
+      labels:
+        app: node-container-nautilus 
+    spec:
+      containers:
+      - name: node-app
+        image: gcr.io/kodekloud/centos-ssh-enabled:node
+        ports:
+        - containerPort: 80
+
+
+## service 
+## kubectl create -f nameoffile.yml -n node-namespace-nautilus
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-service-nautilus
+spec:
+  selector:
+    app: node-container-nautilus 
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+    nodePort: 30012
