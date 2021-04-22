@@ -16,7 +16,7 @@ kubectl create namespace iron-namespace-nautilus
 -service node port via nodeport acces for pod and DB
 on sharing folder 
 
-
+## start of yml deployment file
 apiVersion: v1
 kind: Service
 metadata:
