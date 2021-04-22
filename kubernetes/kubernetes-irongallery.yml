@@ -1,7 +1,7 @@
 # Step 1: kubectl create namespace iron-namespace-nautilus
-'
+``
 kubectl create namespace iron-namespace-nautilus
-'
+``
 # Step 2: kubectl create -f someexamplename
 # Step 3: Wait for the pods to be in 'Running' state. Note down any
 #         frontend pod's name i.e. iron-gallery-deployment-nautilus-xxxxx
@@ -10,14 +10,12 @@ kubectl create namespace iron-namespace-nautilus
 # Step 5: Verify: Open Irongallery app on browser by clicking 'Open Port on Host 1'
 #         and port as NodePort below. You should see Irongallery app without any errors
 # this app would start some front end which you could connect to later on. This deployment builds up
+
 -Db in pod / docker container
 -docker file share 
 -service node port via nodeport acces for pod and DB
--
 on sharing folder 
-# For tips on getting better at Kubernetes tasks, check out the README.md
-# in this folder
-#
+
 
 apiVersion: v1
 kind: Service
