@@ -1,0 +1,69 @@
+##Hi to do rolling upgrade you need 
+# check out current deployments  via command bellow, bear in mind to add -A  thanks to which you will all deployments within all namespaces.
+kubectl get deployments -A
+
+#find here current image within deploymetn it should look like this 
+thor@jump_host /$ kubectl describe deployment nginx-deployment
+Name:                   nginx-deployment
+Namespace:              default
+CreationTimestamp:      Mon, 26 Apr 2021 13:06:39 +0000
+Labels:                 app=nginx-app
+                        type=front-end
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=nginx-app
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx-app
+  Containers:
+   nginx-container:
+    Image:        nginx:1.16
+    Port:         <none>
+    Host Port:    <none>
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   nginx-deployment-74fb588559 (3/3 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  60s   deployment-controller  Scaled up replica set nginx-deployment-74fb588559 to 3
+
+#check out pods 
+
+kubectl get pods -A
+
+#check out here pod naming 
+like for example bellow 
+
+thor@jump_host /$ kubectl get pods -A
+NAMESPACE     NAME                                   READY   STATUS    RESTARTS   AGE
+default       nginx-deployment-74fb588559-6whvb      1/1     Running   0          2m28s
+default       nginx-deployment-74fb588559-fmdw4      1/1     Running   0          2m29s
+default       nginx-deployment-74fb588559-z4pkl      1/1     Running   0          2m28s
+kube-system   coredns-f9fd979d6-9h44s                1/1     Running   0          2m52s
+kube-system   coredns-f9fd979d6-g24bx                1/1     Running   0          2m52s
+kube-system   etcd-controlplane                      1/1     Running   0          3m1s
+kube-system   kube-apiserver-controlplane            1/1     Running   0          3m1s
+kube-system   kube-controller-manager-controlplane   1/1     Running   0          3m1s
+kube-system   kube-flannel-ds-amd64-skxss            1/1     Running   0          2m40s
+kube-system   kube-flannel-ds-amd64-wgqhf            1/1     Running   0          2m52s
+kube-system   kube-proxy-tptvn                       1/1     Running   0          2m52s
+kube-system   kube-proxy-v8554                       1/1     Running   0          2m40s
+kube-system   kube-scheduler-controlplane            1/1     Running   0          3m1s
+
+#then you may create update of image within deployment / You got all the data of current deployment pod name 
+# where 
+# nginx-deployment is a deployment name  
+# nginx-container=nginx:1.19  is pod with new image version
+
+# bellow is command which is needed to be used.
+kubectl set image deployment nginx-deployment nginx-container=nginx:1.19
