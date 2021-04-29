@@ -1,0 +1,66 @@
+#
+# Step 1: kubectl create -f someexmaplefilename.yml
+# copy paste  text from bellow and add specific input regarding to task requirements.
+# bear in mind that Volume of init containers which add input to proper container during creation must be the same name as container from task
+# check out deployment/ pod via / wait till it's in running state
+kubectl get pods -A 
+
+#You shoud then be able to check out container patch in newly created container
+#         which will be in the format ic-deploy-nautilus-xxxxx
+Verify via : 
+kubectl exec -it ic-deploy-nautilus-xxxxx -- /bin/bash
+
+#         In the resulting prompt, type 'cat /ic/official' 
+#you should see 
+"Init Done - Welcome to xFusionCorp Industries"
+
+# there is also possibility to check out logs of running container
+kubectl logs -f ic-deploy-nautilus-xxxxx
+#         You should see the message "Init Done - Welcome to nautilus Industries"
+#         printed every 5 secs
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iic-deploy-nautilus
+  labels:
+    app: ic-nautilus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ic-nautilus
+  template:
+    metadata:
+      labels:
+        app: ic-nautilus
+    spec:
+      volumes:
+        - name: ic-volume-xfusion
+          emptyDir: {}
+      initContainers:
+        - name: ic-msg-nautilus
+          image: fedora:latest
+          command:
+            [
+              "/bin/bash",
+              "-c",
+              "echo Init Done - Welcome to xFusionCorp Industries > /ic/official",
+            ]
+          volumeMounts:
+            - name: ic-volume-nautilus
+              mountPath: /ic
+
+      containers:
+        - name: ic-main-nautilus
+          image: fedora:latest
+          command:
+            [
+              "/bin/bash",
+              "-c",
+              "while true; do cat /ic/official; sleep 5; done",
+            ]
+          volumeMounts:
+            - name: ic-volume-nautilus
+              mountPath: /ic
