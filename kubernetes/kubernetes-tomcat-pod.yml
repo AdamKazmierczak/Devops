@@ -1,0 +1,58 @@
+in this taks you ned to deploy 3 things in general
+
+1. namespace
+
+kubectl create namespace tomcat-service-xfusion
+
+2. Tomcat service under which tomcat will respond to
+configuration of deployment is bellow in one common yaml.
+
+3. Tomcat pod from kodekloud image.
+configuration of deployment is bellow in one common yaml.
+
+copy bellow deployment bear in mind that there might different naming regarding deployment such as
+-metadata  (name of deployment and name of service)
+-namespace
+-port 
+-targetport
+-nodeport
+
+-- start of configuration yml file
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tomcat-service-xfusion
+  namespace: tomcat-namespace-xfusion
+spec:
+  type: NodePort
+  selector:
+    app: tomcat
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 32227
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment-xfusion
+  namespace: tomcat-namespace-xfusion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat
+  template:
+    metadata:
+      labels:
+        app: tomcat
+    spec:
+      containers:
+        - name: tomcat-container-xfusion
+          image: gcr.io/kodekloud/centos-ssh-enabled:tomcat
+          ports:
+            - containerPort: 8080
+
+-- end of configuration yml file
