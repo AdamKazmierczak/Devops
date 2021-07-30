@@ -5,11 +5,11 @@ hostnamectl
 
 sudo rpm -Uvh https://yum.puppet.com/puppet7-release-el-7.noarch.rpm
 
-##install puppet 
+## install puppet 
 sudo yum install puppet-agent -y
 
-##start puppet service
+## start puppet service
 service puppet start
 
-##check puppet service statsu
+## check puppet service statsu
 systemctl status puppet
