@@ -11,5 +11,5 @@ sudo yum install puppet-agent -y
 ## start puppet service
 service puppet start
 
-## check puppet service statsu
+## check puppet service status
 systemctl status puppet
